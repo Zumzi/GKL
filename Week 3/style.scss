@@ -1,0 +1,134 @@
+@mixin linear-gradient($direction, $fromColor, $toColor) {
+	background-color: $toColor; /* Fallback Color */
+	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient($direction, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient($direction, $fromColor, $toColor); /* FF3.6 */
+	background-image:     -ms-linear-gradient($direction, $fromColor, $toColor); /* IE10 */
+	background-image:      -o-linear-gradient($direction, $fromColor, $toColor); /* Opera 11.10+ */
+	background-image:         linear-gradient($direction, $fromColor, $toColor);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+	background-size: cover;
+	height: 100%;
+}
+
+@mixin default-box {
+	background-color: $color;
+	width: 640px;
+	border: 1px solid #000000;
+	margin-bottom: 4px;
+	padding: 8px;
+}
+
+@mixin radius($radius) {
+	-webkit-border-radius:	$radius;
+	border-radius: 			$radius;
+}
+
+@mixin border($border) {
+	-webkit-border-radius:	$border;
+	border-radius: 			$border;
+}
+
+$color: hsl(63%, 55%, 87%);
+
+$color2: hue($color);
+
+$font-stack: 'Arial';
+
+html{
+	@include linear-gradient(top, Olive 30%, Tomato 70%);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+body {
+	width: 50em;
+	margin: auto;
+	font-family: Verdana;
+	font-size: 12px;
+	height: 100%;
+}
+header,
+article,
+footer {
+	@include default-box;
+	@include radius(5px 5px 5px 5px);
+}
+
+header h1 {
+  font-family: $font-stack;
+  text-align: center;
+  font-size: 24px;
+}
+
+nav {
+  width: 640px;
+  clear: left;
+  float: left;
+  overflow: hidden;
+	
+	ul {
+	  height: 40px;
+	  clear: left;
+	  float: left;
+	  position: relative;
+	  left: 50%;
+	  text-align: center;
+	  list-style-type: none;
+	
+		li {
+		  float: left;
+		  position: relative;
+		  right: 50%;
+		
+			a {
+			  @include radius(3px 3px 3px 3px);
+			  display: block;
+			  line-height: 30px;
+			  padding: 0 20px 0 20px;
+			  margin: 0 4px 0 4px;
+			  @include linear-gradient(left, HotPink 24%, MediumAquaMarine 86%);
+			  color: #ffffff;
+			  text-decoration: none;
+			  border: 2px outset #ffffff;
+			}
+			
+			a:hover {
+			  @include linear-gradient(right, DarkOrchid 24%, GreenYellow 86%);
+			}
+		}
+	}
+}
+
+article {
+  float: left;
+  line-height: 140%;
+	
+	img {
+	  @include radius(100%);
+	  float: right;
+	  border: 2px solid #000;
+	  margin-left: 8px;
+	}
+	
+	h2 {
+	  font-family: $font-stack;
+	  font-size: 21.6px;
+	  line-height: 140%;
+	}
+	
+	h3 {
+	  font-family: $font-stack;
+	  font-size: 19.200000000000003px;
+	  line-height: 140%;
+	  margin-top: 8px;
+	}
+	
+	p {
+	  margin-bottom: 12px;
+	}
+}
+
+footer {
+  float: left;
+  text-align: center;
+}
